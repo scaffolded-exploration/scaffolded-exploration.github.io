@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <meta name="title" content="Scaffolded Exploration | Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents">
+  <meta name="title" content="Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents">
   <meta name="description" content="Project page for Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents, an ICML 2026 paper on tool-use collapse, exploration diversity, and tools as scaffolding in visual reasoning agents.">
   <meta name="keywords" content="visual chain-of-thought, visual agents, tool use, reinforcement learning, spatial reasoning, exploration diversity, tool-use collapse, multimodal reasoning, VQA">
   <meta name="author" content="Dong-Hee Kim, Reuben Tan, Donghyun Kim">
@@ -13,16 +13,16 @@
   <meta name="theme-color" content="#1f6feb">
 
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="Scaffolded Exploration">
-  <meta property="og:title" content="Scaffolded Exploration">
-  <meta property="og:description" content="Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents">
+  <meta property="og:site_name" content="Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents">
+  <meta property="og:title" content="Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents">
+  <meta property="og:description" content="ICML 2026 project page on tool-use collapse, exploration diversity, and tools as training-time scaffolding in visual reasoning agents.">
   <meta property="og:url" content="https://scaffolded-exploration.github.io/">
   <meta property="og:image" content="https://scaffolded-exploration.github.io/static/images/introduction.png">
-  <meta property="og:image:alt" content="Scaffolded Exploration overview figure">
+  <meta property="og:image:alt" content="Overview figure for Diversity Over Frequency">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Scaffolded Exploration">
-  <meta name="twitter:description" content="Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents">
+  <meta name="twitter:title" content="Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents">
+  <meta name="twitter:description" content="ICML 2026 project page on tool-use collapse, exploration diversity, and tools as training-time scaffolding in visual reasoning agents.">
   <meta name="twitter:image" content="https://scaffolded-exploration.github.io/static/images/introduction.png">
 
   <meta name="citation_title" content="Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents">
@@ -33,7 +33,7 @@
   <meta name="citation_conference_title" content="Proceedings of the 43rd International Conference on Machine Learning">
   <meta name="citation_pdf_url" content="https://scaffolded-exploration.github.io/static/pdfs/paper.pdf">
 
-  <title>Scaffolded Exploration | Diversity Over Frequency</title>
+  <title>Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,16 +55,22 @@
       --muted: #536273;
       --primary: #1f6feb;
       --primary-dark: #174ea6;
-      --accent: #0f766e;
       --shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
       --radius: 18px;
     }
 
     html { scroll-behavior: smooth; }
+
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
       background: linear-gradient(180deg, #f8fbff 0%, #fbfbfd 100%);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
     }
 
     .site-nav {
@@ -72,18 +78,25 @@
       top: 0;
       z-index: 30;
       backdrop-filter: blur(12px);
-      background: rgba(251, 251, 253, 0.85);
+      background: rgba(251, 251, 253, 0.88);
       border-bottom: 1px solid rgba(216, 225, 234, 0.8);
     }
 
     .site-nav .navbar-item,
-    .site-nav .navbar-link { color: var(--muted); font-weight: 600; }
-    .site-nav .navbar-item:hover { color: var(--primary); background: transparent; }
+    .site-nav .navbar-link {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .site-nav .navbar-item:hover {
+      color: var(--primary);
+      background: transparent;
+    }
 
     .hero.project-hero {
       background:
         radial-gradient(circle at top right, rgba(31, 111, 235, 0.10), transparent 30%),
-        radial-gradient(circle at top left, rgba(15, 118, 110, 0.08), transparent 28%),
+        radial-gradient(circle at top left, rgba(31, 111, 235, 0.05), transparent 28%),
         linear-gradient(180deg, #f8fbff 0%, #ffffff 100%);
       border-bottom: 1px solid rgba(216, 225, 234, 0.9);
     }
@@ -103,26 +116,33 @@
     }
 
     .publication-title {
-      font-size: clamp(2.6rem, 4.8vw, 4.8rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      margin-bottom: 1rem;
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      max-width: 1120px;
+      margin: 0 auto 1rem;
     }
 
     .paper-subtitle {
-      font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+      font-size: clamp(1.02rem, 1.7vw, 1.28rem);
       color: var(--muted);
       max-width: 900px;
       margin: 0 auto 1.2rem;
+      line-height: 1.7;
     }
 
-    .author-row, .affiliation-row {
+    .author-row,
+    .affiliation-row {
       color: var(--muted);
       margin-bottom: 0.75rem;
       font-size: 1rem;
+      line-height: 1.7;
     }
 
-    .author-row strong, .affiliation-row strong { color: var(--text); }
+    .author-row strong,
+    .affiliation-row strong {
+      color: var(--text);
+    }
 
     .hero-card {
       margin-top: 2rem;
@@ -133,32 +153,40 @@
       overflow: hidden;
     }
 
-    .hero-card img { width: 100%; height: auto; display: block; }
-
     .hero-card .caption {
       padding: 1rem 1.25rem 1.2rem;
       color: var(--muted);
       font-size: 0.98rem;
       text-align: left;
       background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+      line-height: 1.7;
     }
 
     .button.is-project {
       background: var(--text);
-      color: white;
+      color: #fff;
       border: none;
       box-shadow: 0 8px 18px rgba(23, 33, 43, 0.12);
     }
 
-    .button.is-project:hover { background: #0f1720; color: white; }
+    .button.is-project:hover {
+      background: #0f1720;
+      color: #fff;
+    }
+
     .button.is-outline-project {
-      background: white;
+      background: #fff;
       color: var(--text);
       border: 1px solid rgba(216, 225, 234, 1);
     }
 
-    .section { padding: 4rem 1.5rem; }
-    .section.alt { background: var(--surface-alt); }
+    .section {
+      padding: 4rem 1.5rem;
+    }
+
+    .section.alt {
+      background: var(--surface-alt);
+    }
 
     .section-title {
       font-size: clamp(1.8rem, 2.2vw, 2.5rem);
@@ -168,8 +196,9 @@
 
     .section-lead {
       color: var(--muted);
-      max-width: 760px;
+      max-width: 780px;
       margin-bottom: 2rem;
+      line-height: 1.8;
     }
 
     .content-card,
@@ -180,13 +209,16 @@
       border: 1px solid rgba(216, 225, 234, 0.95);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+      height: auto;
     }
 
-    .content-card { padding: 1.6rem; }
+    .content-card {
+      padding: 1.6rem;
+    }
 
     .metric-card {
-      height: 100%;
       padding: 1.35rem;
+      height: 100%;
     }
 
     .metric-card h3 {
@@ -194,30 +226,30 @@
       margin-bottom: 0.6rem;
     }
 
-    .metric-card p { color: var(--muted); }
-
-    .figure-card { overflow: hidden; height: 100%; }
-    .figure-card img {
-      display: block;
-      width: 100%;
-      height: auto;
-      background: #fff;
+    .metric-card p {
+      color: var(--muted);
+      line-height: 1.75;
     }
 
-    .figure-card .figure-body {
+    .figure-card {
+      overflow: hidden;
+    }
+
+    .figure-body {
       padding: 1.1rem 1.2rem 1.25rem;
     }
 
-    .figure-card .figure-title {
+    .figure-title {
       font-size: 1rem;
       font-weight: 800;
       margin-bottom: 0.45rem;
+      line-height: 1.45;
     }
 
-    .figure-card .figure-desc {
+    .figure-desc {
       color: var(--muted);
       font-size: 0.96rem;
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .results-table {
@@ -225,7 +257,7 @@
       border-collapse: collapse;
       overflow: hidden;
       border-radius: 16px;
-      background: white;
+      background: #fff;
     }
 
     .results-table th,
@@ -242,16 +274,33 @@
       font-size: 0.95rem;
     }
 
-    .results-table td { color: var(--muted); }
-    .results-table tr:last-child td { border-bottom: none; }
-    .results-table td strong { color: var(--text); }
+    .results-table td {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .results-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .results-table td strong {
+      color: var(--text);
+    }
+
+    .takeaway-list {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
 
     .takeaway-list li {
       margin-bottom: 0.8rem;
       color: var(--muted);
+      line-height: 1.7;
     }
 
-    .takeaway-list strong { color: var(--text); }
+    .takeaway-list strong {
+      color: var(--text);
+    }
 
     .bibtex-card {
       padding: 1.5rem;
@@ -267,18 +316,39 @@
       line-height: 1.6;
     }
 
+    .analysis-columns,
+    .generalization-columns {
+      align-items: flex-start;
+    }
+
+    .stack-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
     .footer {
       border-top: 1px solid rgba(216, 225, 234, 0.95);
       background: #fbfbfd;
       color: var(--muted);
     }
 
-    .footer a { color: var(--primary-dark); }
+    .footer a {
+      color: var(--primary-dark);
+    }
 
     @media screen and (max-width: 768px) {
-      .publication-title { font-size: 2.45rem; }
-      .section { padding: 3rem 1rem; }
-      .hero.project-hero .hero-body { padding: 3rem 1rem 2.5rem; }
+      .section {
+        padding: 3rem 1rem;
+      }
+
+      .hero.project-hero .hero-body {
+        padding: 3rem 1rem 2.5rem;
+      }
+
+      .buttons.is-centered {
+        justify-content: center;
+      }
     }
   </style>
 
@@ -294,7 +364,7 @@
       {"@type": "Person", "name": "Donghyun Kim", "affiliation": {"@type": "Organization", "name": "Korea University"}}
     ],
     "datePublished": "2026",
-    "publisher": {"@type": "Organization", "name": "ICML / PMLR"},
+    "publisher": {"@type": "Organization", "name": "ICML"},
     "url": "https://scaffolded-exploration.github.io/",
     "image": "https://scaffolded-exploration.github.io/static/images/introduction.png",
     "keywords": ["visual chain-of-thought", "tool-use collapse", "exploration diversity", "spatial reasoning", "multimodal reasoning"],
@@ -310,7 +380,7 @@
   <nav class="navbar site-nav" role="navigation" aria-label="main navigation">
     <div class="container is-max-desktop">
       <div class="navbar-brand">
-        <a class="navbar-item has-text-weight-bold" href="#top">Scaffolded Exploration</a>
+        <a class="navbar-item has-text-weight-bold" href="#top">Diversity Over Frequency</a>
         <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navMenu">
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
@@ -335,11 +405,12 @@
         <div class="container is-max-desktop has-text-centered">
           <div class="eyebrow">
             <span><i class="fa-solid fa-compass"></i></span>
-            <span>ICML 2026 · PMLR 306</span>
+            <span>ICML 2026</span>
           </div>
-          <h1 class="title publication-title">Scaffolded Exploration</h1>
+
+          <h1 class="title publication-title">Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents</h1>
           <p class="paper-subtitle">
-            Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents
+            Visual tools help most as training-time scaffolding through broader exploration, not through persistent tool usage.
           </p>
 
           <div class="author-row">
@@ -494,7 +565,7 @@
           The paper traces the performance gap back to diversity in reasoning and in crop selection, rather than to raw tool frequency alone.
         </p>
 
-        <div class="columns is-variable is-6">
+        <div class="columns is-variable is-6 analysis-columns">
           <div class="column is-7-desktop is-12-tablet">
             <div class="figure-card">
               <img src="static/images/figure3.png" alt="Figure 3 showing textual exploration diversity during training" width="1600" height="950" loading="lazy">
@@ -507,8 +578,8 @@
             </div>
           </div>
 
-          <div class="column is-5-desktop is-12-tablet">
-            <div class="figure-card" style="margin-bottom: 1.5rem;">
+          <div class="column is-5-desktop is-12-tablet stack-column">
+            <div class="figure-card">
               <img src="static/images/figure4.png" alt="Figure 4 comparing visual crop distributions for vanilla and entropy-regularized training" width="1200" height="1100" loading="lazy">
               <div class="figure-body">
                 <div class="figure-title">Figure 4 · Visual exploration becomes broader and more relevant</div>
@@ -538,7 +609,7 @@
           The same qualitative asymmetry extends beyond the main 3D spatial reasoning setting and appears again in a broader tool suite on medical VQA.
         </p>
 
-        <div class="columns is-variable is-6">
+        <div class="columns is-variable is-6 generalization-columns">
           <div class="column is-7-desktop is-12-tablet">
             <div class="figure-card">
               <img src="static/images/figure5.png" alt="Figure 5 showing tool use dynamics on OpenThinkIMG and VQA-RAD" width="1600" height="900" loading="lazy">
@@ -551,8 +622,8 @@
             </div>
           </div>
 
-          <div class="column is-5-desktop is-12-tablet">
-            <div class="content-card" style="margin-bottom:1.5rem; overflow-x:auto;">
+          <div class="column is-5-desktop is-12-tablet stack-column">
+            <div class="content-card" style="overflow-x:auto;">
               <h3 class="title is-5">Table 3 · Impact on generalization</h3>
               <table class="results-table">
                 <thead>
@@ -634,8 +705,6 @@
   title={Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents},
   author={Kim, Dong-Hee and Tan, Reuben and Kim, Donghyun},
   booktitle={Proceedings of the 43rd International Conference on Machine Learning},
-  series={Proceedings of Machine Learning Research},
-  volume={306},
   year={2026},
   address={Seoul, South Korea},
   publisher={PMLR},
@@ -650,10 +719,7 @@
     <div class="container is-max-desktop">
       <div class="content has-text-centered">
         <p>
-          This page highlights the paper's main findings using the overview figure, training-dynamics plots, exploration analyses, and generalization results.
-        </p>
-        <p>
-          You can place all images under <code>static/images/</code> with the filenames <code>introduction.png</code>, <code>figure2.png</code>, <code>figure3.png</code>, <code>figure4.png</code>, and <code>figure5.png</code>, and place the paper PDF at <code>static/pdfs/paper.pdf</code>.
+          Place the images under <code>static/images/</code> with the filenames <code>introduction.png</code>, <code>figure2.png</code>, <code>figure3.png</code>, <code>figure4.png</code>, and <code>figure5.png</code>, and place the paper PDF at <code>static/pdfs/paper.pdf</code>.
         </p>
       </div>
     </div>
