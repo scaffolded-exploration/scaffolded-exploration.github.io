@@ -21,13 +21,6 @@
   <meta name="twitter:description" content="ICML 2026 project page on tool-use collapse, exploration diversity, and tools as training-time scaffolding." />
   <meta name="twitter:image" content="https://scaffolded-exploration.github.io/static/images/introduction.png" />
 
-  <meta name="citation_title" content="Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents" />
-  <meta name="citation_author" content="Kim, Dong-Hee" />
-  <meta name="citation_author" content="Tan, Reuben" />
-  <meta name="citation_author" content="Kim, Donghyun" />
-  <meta name="citation_publication_date" content="2026" />
-  <meta name="citation_conference_title" content="Proceedings of the 43rd International Conference on Machine Learning" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -45,18 +38,16 @@
       --muted-2: #7b8798;
       --blue: #2d5bdb;
       --blue-soft: rgba(45, 91, 219, 0.08);
-      --blue-soft-2: rgba(45, 91, 219, 0.04);
       --shadow-sm: 0 8px 24px rgba(15, 23, 42, 0.05);
       --shadow-md: 0 18px 48px rgba(15, 23, 42, 0.08);
       --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 16px;
       --content: 1120px;
-      --media-pad: 14px;
+      --media-pad: 16px;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -274,10 +265,13 @@
       box-shadow: var(--shadow-sm);
       backdrop-filter: blur(10px);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .card-body {
       padding: 22px 24px 24px;
+      flex-grow: 1;
     }
 
     .card h3 {
@@ -292,6 +286,7 @@
       color: var(--muted);
       font-size: 0.97rem;
       line-height: 1.82;
+      margin: 0;
     }
 
     .abstract-grid {
@@ -336,6 +331,44 @@
       height: 18px;
     }
 
+    /* 비대칭 그리드 (Fig 3 좀 더 크게, Fig 4 약간 작게) */
+    .analysis-pair {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    /* VQA 연결 그리드 (데스크탑에서 Fig 5가 절반 차지) */
+    .vqa-pair {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+      align-items: stretch;
+      margin-bottom: 32px;
+    }
+
+    .media-frame {
+      padding: var(--media-pad);
+      background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+    }
+
+    .media-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 18px;
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.04);
+    }
+
+    .media-inner img {
+      width: 100%;
+      height: auto;
+    }
+
     .table-card {
       padding: 0;
     }
@@ -362,8 +395,7 @@
       border-collapse: collapse;
     }
 
-    th,
-    td {
+    th, td {
       padding: 14px 10px;
       text-align: left;
       vertical-align: top;
@@ -379,57 +411,38 @@
       font-size: 0.9rem;
     }
 
-    td {
+    td { color: var(--muted); }
+    tbody tr:last-child td { border-bottom: none; }
+    td strong { color: var(--text); }
+
+    /* Table 3 특화 친절한 설명 디자인 */
+    .table-explanation {
+      padding: 18px 24px 24px;
+      background: rgba(241, 245, 249, 0.5);
+      border-top: 1px solid rgba(15, 23, 42, 0.06);
       color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.75;
     }
 
-    tbody tr:last-child td {
-      border-bottom: none;
-    }
-
-    td strong {
-      color: var(--text);
-    }
-
-    .analysis-pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: start;
-    }
-
-    .media-frame {
-      padding: var(--media-pad);
-      background: linear-gradient(180deg, #ffffff 0%, #fbfcff 100%);
-      border-bottom: 1px solid rgba(15, 23, 42, 0.06);
-    }
-
-    .equal-media {
-      aspect-ratio: 16 / 10.5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border-radius: 18px;
-      background: #ffffff;
-    }
-
-    .equal-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
+    .table-explanation strong {
+      display: inline-block;
+      margin-bottom: 6px;
+      color: var(--blue);
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
     }
 
     .note-row {
       margin-top: 18px;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 18px;
     }
 
     .note {
-      padding: 18px 18px;
+      padding: 20px 24px;
       border-radius: 20px;
       border: 1px solid rgba(45, 91, 219, 0.08);
       background: linear-gradient(180deg, rgba(45, 91, 219, 0.05), rgba(45, 91, 219, 0.025));
@@ -437,7 +450,7 @@
     }
 
     .note h3 {
-      margin: 0 0 10px;
+      margin: 0 0 12px;
       font-size: 1rem;
       letter-spacing: -0.02em;
     }
@@ -447,46 +460,20 @@
       padding-left: 1.1rem;
     }
 
+    .note li {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.97rem;
+    }
     .note li + li {
       margin-top: 10px;
     }
 
-    .generalization-stack {
-      display: grid;
-      gap: 18px;
-    }
-
-    .figure-card.narrow-figure {
-      max-width: 960px;
-    }
-
-    .generalization-tables {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      align-items: start;
-    }
-
-    .site-footer {
-      margin-top: 42px;
-      padding: 26px 0 40px;
-      border-top: 1px solid rgba(15, 23, 42, 0.06);
-      color: var(--muted-2);
-      font-size: 0.92rem;
-      line-height: 1.8;
-    }
-
-    .site-footer a {
-      color: var(--muted);
-      font-weight: 600;
-    }
-
-    .site-footer .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
+    .subsection-title {
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      margin: 32px 0 16px;
+      color: var(--text);
     }
 
     .bibtex pre {
@@ -501,15 +488,28 @@
       box-shadow: var(--shadow-md);
     }
 
+    .site-footer {
+      margin-top: 42px;
+      padding: 26px 0 40px;
+      border-top: 1px solid rgba(15, 23, 42, 0.06);
+      color: var(--muted-2);
+      font-size: 0.92rem;
+      line-height: 1.8;
+    }
+
+    .site-footer .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     @media (max-width: 960px) {
       .abstract-grid,
       .analysis-pair,
-      .generalization-tables {
+      .vqa-pair {
         grid-template-columns: 1fr;
-      }
-
-      .figure-card.narrow-figure {
-        max-width: 100%;
       }
 
       .nav-inner {
@@ -550,12 +550,12 @@
         padding: 8px 12px 14px;
       }
 
-      .resource {
-        width: 100%;
+      .table-explanation {
+        padding: 16px 18px 18px;
       }
 
-      .equal-media {
-        aspect-ratio: auto;
+      .resource {
+        width: 100%;
       }
     }
   </style>
@@ -631,9 +631,11 @@
               <p>
                 Visual agents employ external visual tools within visual chains of thought to incorporate fine-grained evidence. While prior work has mainly studied these tools in visual search settings, this paper investigates harder tasks including 3D spatial reasoning and medical visual question answering, where local tool-acquired evidence must be integrated with the global visual context.
               </p>
+              <br>
               <p>
                 The central finding is a <strong>tool-use collapse</strong> phenomenon: under vanilla reinforcement fine-tuning, accuracy improves while tool use falls toward zero. Completely banning tools hurts performance, but explicitly incentivizing tool use yields only marginal gains despite much higher tool frequency.
               </p>
+              <br>
               <p>
                 The paper further shows that both vanilla training and reward-based tool encouragement reduce rollout diversity, whereas adaptive entropy regularization preserves broader exploration and achieves the best performance. This supports a training-time view of tools as scaffolding: what matters is the richer exploration history they enable, not simply persistent tool invocation.
               </p>
@@ -643,15 +645,15 @@
           <div class="highlights">
             <div class="highlight">
               <strong>Tool-use collapse</strong>
-              <p>Accuracy improves while tool use naturally declines.</p>
+              <p style="margin:0;">Accuracy improves while tool use naturally declines.</p>
             </div>
             <div class="highlight">
               <strong>Frequency is not enough</strong>
-              <p>Driving tool usage to 100% brings only marginal gains.</p>
+              <p style="margin:0;">Driving tool usage to 100% brings only marginal gains.</p>
             </div>
             <div class="highlight">
               <strong>Diversity matters</strong>
-              <p>Entropy-regularized exploration yields the best final reasoning performance.</p>
+              <p style="margin:0;">Entropy-regularized exploration yields the best final reasoning performance.</p>
             </div>
           </div>
         </div>
@@ -669,13 +671,17 @@
         </div>
 
         <div class="card figure-card">
-          <img
-            src="static/images/figure2.png"
-            alt="Figure 2 showing tool use ratio and 3DSRBench accuracy during training"
-            width="1600"
-            height="860"
-            loading="lazy"
-          />
+          <div class="media-frame">
+            <div class="media-inner">
+              <img
+                src="static/images/figure2.png"
+                alt="Figure 2 showing tool use ratio and 3DSRBench accuracy during training"
+                width="1600"
+                height="860"
+                loading="lazy"
+              />
+            </div>
+          </div>
           <div class="card-body">
             <h3 class="figure-title">Figure 2 · Training dynamics of tool use and accuracy</h3>
             <p>
@@ -748,10 +754,11 @@
           </p>
         </div>
 
+        <!-- Fig 3 넓게(1.4), Fig 4 좁게(1.0) -->
         <div class="analysis-pair">
           <div class="card figure-card">
             <div class="media-frame">
-              <div class="equal-media">
+              <div class="media-inner">
                 <img
                   src="static/images/figure3.png"
                   alt="Figure 3 showing textual exploration diversity during training"
@@ -771,7 +778,7 @@
 
           <div class="card figure-card">
             <div class="media-frame">
-              <div class="equal-media">
+              <div class="media-inner">
                 <img
                   src="static/images/figure4.png"
                   alt="Figure 4 comparing visual crop distributions for vanilla and entropy-regularized training"
@@ -809,20 +816,25 @@
           <div class="section-kicker">Transfer</div>
           <h2>Generalization</h2>
           <p class="section-lead">
-            The same qualitative asymmetry extends beyond the main 3D spatial reasoning setting and appears again in a broader tool suite on medical VQA.
+            The same qualitative asymmetry extends beyond the main 3D spatial reasoning setting and appears again in a broader tool suite.
           </p>
         </div>
 
-        <div class="generalization-stack">
-          <div class="card figure-card narrow-figure">
+        <h3 class="subsection-title" style="margin-top:0;">Extension to Medical VQA</h3>
+        
+        <!-- Desktop: Fig 5 (좌) / Table 4 (우) 그룹핑 -->
+        <div class="vqa-pair">
+          <div class="card figure-card">
             <div class="media-frame">
-              <img
-                src="static/images/figure5.png"
-                alt="Figure 5 showing tool use dynamics on OpenThinkIMG and VQA-RAD"
-                width="1600"
-                height="900"
-                loading="lazy"
-              />
+              <div class="media-inner">
+                <img
+                  src="static/images/figure5.png"
+                  alt="Figure 5 showing tool use dynamics on OpenThinkIMG and VQA-RAD"
+                  width="1600"
+                  height="900"
+                  loading="lazy"
+                />
+              </div>
             </div>
             <div class="card-body">
               <h3 class="figure-title">Figure 5 · Similar dynamics on OpenThinkIMG and VQA-RAD</h3>
@@ -832,122 +844,88 @@
             </div>
           </div>
 
-          <div class="generalization-tables">
-            <div class="card table-card">
-              <div class="table-head">
-                <h3>Table 3 · Impact on generalization</h3>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Method</th>
-                      <th>3DSRBench</th>
-                      <th>CV-Bench-3D</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Qwen2.5-VL 7B</strong></td>
-                      <td>48.4</td>
-                      <td>82.9</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Mini-o3</strong></td>
-                      <td>54.5</td>
-                      <td>77.6</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Vanilla RFT</strong></td>
-                      <td>59.2</td>
-                      <td>76.7</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Tool-encourage</strong></td>
-                      <td>59.9</td>
-                      <td>74.5</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Entropy-regularized</strong></td>
-                      <td>62.9</td>
-                      <td>78.8</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+          <div class="card table-card">
+            <div class="table-head">
+              <h3>Table 4 · VQA-RAD validation accuracy</h3>
             </div>
-
-            <div class="card table-card">
-              <div class="table-head">
-                <h3>Table 4 · VQA-RAD validation accuracy</h3>
-              </div>
-              <div class="table-wrap">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Method</th>
-                      <th>Accuracy</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><strong>Vanilla RFT</strong></td>
-                      <td>46.34</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Tool-Encouraged RFT</strong></td>
-                      <td>47.23</td>
-                    </tr>
-                    <tr>
-                      <td><strong>Entropy Regularization</strong></td>
-                      <td>48.78</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Method</th>
+                    <th>Accuracy</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Vanilla RFT</strong></td>
+                    <td>46.34</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Tool-Encouraged RFT</strong></td>
+                    <td>47.23</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Entropy Regularization</strong></td>
+                    <td>48.78</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="card-body" style="border-top:1px solid rgba(15,23,42,0.06); padding-top:16px;">
+              <p>
+                The best-performing method is still the one that preserves exploration diversity, confirming the dynamics in a totally different medical domain.
+              </p>
             </div>
           </div>
+        </div>
 
-          <div class="note">
-            <h3>Reading the transfer result</h3>
-            <p>
-              The best-performing method is still the one that preserves exploration diversity. That pattern holds more cleanly than a “use more tools” interpretation.
-            </p>
+        <h3 class="subsection-title">Robustness on General Spatial Tasks</h3>
+        
+        <!-- 완전히 분리된 독립된 내용의 Table 3 -->
+        <div class="card table-card">
+          <div class="table-head">
+            <h3>Table 3 · Impact on general spatial understanding (CV-Bench-3D)</h3>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="bibtex">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-kicker">Citation</div>
-          <h2>BibTeX</h2>
-          <p class="section-lead">
-            Replace the key later if you upload an arXiv version or camera-ready metadata.
-          </p>
-        </div>
-
-        <div class="bibtex">
-<pre><code>@inproceedings{kim2026diversity,
-  title={Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents},
-  author={Kim, Dong-Hee and Tan, Reuben and Kim, Donghyun},
-  booktitle={Proceedings of the 43rd International Conference on Machine Learning},
-  year={2026},
-  address={Seoul, South Korea},
-  publisher={PMLR},
-  url={https://scaffolded-exploration.github.io/}
-}</code></pre>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <div>Diversity Over Frequency: Rethinking Tool Use in Visual Chain-of-Thought Agents</div>
-      <div>ICML 2026</div>
-    </div>
-  </footer>
-</body>
-</html>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Method</th>
+                  <th>3DSRBench (Target Task)</th>
+                  <th>CV-Bench-3D (General Domain)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Qwen2.5-VL 7B (Baseline)</strong></td>
+                  <td>48.4</td>
+                  <td>82.9</td>
+                </tr>
+                <tr>
+                  <td><strong>Mini-o3 (Baseline)</strong></td>
+                  <td>54.5</td>
+                  <td>77.6</td>
+                </tr>
+                <tr>
+                  <td><strong>Vanilla RFT</strong></td>
+                  <td>59.2</td>
+                  <td>76.7</td>
+                </tr>
+                <tr>
+                  <td><strong>Tool-encourage</strong></td>
+                  <td>59.9</td>
+                  <td>74.5</td>
+                </tr>
+                <tr>
+                  <td><strong>Entropy-regularized</strong></td>
+                  <td>62.9</td>
+                  <td>78.8</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Table 3의 정보 부족을 보완하는 친절한 해설 -->
+          <div class="table-explanation">
+            <strong>What this means</strong>
+            While standard reinforcement fine-tuning (Vanilla RFT) improves performance on the specific target task (3DSRBench), it actively degrades the model's general depth perception and spatial understanding (CV-Bench-3D). This happens because the agent overfits to specific tool-use patterns
